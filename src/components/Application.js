@@ -6,81 +6,31 @@ import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
 import { getAppointmentsForDay } from "../helpers/selectors";
 
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm"
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Fake Student",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: "last",
-    time: "5  pm",
-    interview: {
-      student: "Second Fake Student",
-      interviewer: {
-        id: 1,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-];
-
 export default function Application(props) {
   const setDay = day => setState({ ...state, day });
-  const setDays = days => setState(prev => ({ ...prev, days }));
+  // const setDays = days => setState(prev => ({ ...prev, days }));
 
   useEffect(() => {
     axios
       .get('/api/days')
-      .then(res => {
-        console.log(getAppointmentsForDay(res.data, "Monday"))
-        return res.data;
-      })
+      .then(res => getAppointmentsForDay(res.data, "Monday"))
       .catch(e => e.stack);
   });
 
-  useEffect(() => {
-    axios
-      .get('/api/days')
-      .then(res => {
-        setDays(res.data)
-      })
-      .catch(e => e.stack);
-  }, []);
-
+  Promise.all([
+    Promise.resolve(axios.get('api/days')),
+    Promise.resolve(axios.get('api/appointments')),
+  ]).then((all) => {
+    setState(prev => ({...prev, days: all[0].data, appointments: all[1].data}));
+  });
+  
   const [state, setState] = useState({
     day: [],
     days: [],
     appointments: {}
   });
+
+  const appointments = getAppointmentsForDay(state, state.day)
 
   return (
     <main className="layout">
