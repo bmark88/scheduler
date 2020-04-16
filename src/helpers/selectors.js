@@ -20,12 +20,14 @@ const getAppointmentsForDay = (state, dayName) => {
 };
 
 const getInterview = (state, interview) => {
-  if (!interview) return null
+  if (!interview) return null;
 
-  // if interview is not null, replace interviewer id with interviewer object
-  interview.interviewer = state.interviewers[interview.interviewer]
+  const studentAndInterviewer = {
+    interviewer: state.interviewers[interview.interviewer],
+    student: interview.student
+  }
 
-  return interview
+  return studentAndInterviewer;
 };
 
 export { getAppointmentsForDay, getInterview };
