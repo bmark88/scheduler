@@ -2,7 +2,7 @@ const getAppointmentsForDay =(state, dayName) => {
   let appointmentsToday;
   let filteredAppointments = [];
 
-  state.days.filter(day => {
+  state.days.forEach(day => {
     if (day.name === dayName) {
       appointmentsToday = day.appointments
     }
