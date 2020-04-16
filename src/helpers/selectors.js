@@ -1,4 +1,4 @@
-const getAppointmentsForDay =(state, dayName) => {
+const getAppointmentsForDay = (state, dayName) => {
   let appointmentsToday;
   let filteredAppointments = [];
 
@@ -19,4 +19,13 @@ const getAppointmentsForDay =(state, dayName) => {
   return filteredAppointments
 };
 
-export { getAppointmentsForDay };
+const getInterview = (state, interview) => {
+  if (!interview) return null
+
+  // if interview is not null, replace interviewer id with interviewer object
+  interview.interviewer = state.interviewers[interview.interviewer]
+
+  return interview
+};
+
+export { getAppointmentsForDay, getInterview };
