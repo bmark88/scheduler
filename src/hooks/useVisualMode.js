@@ -12,7 +12,6 @@ const useVisualMode = (initialMode) => {
   }
 
   function back() {
-    console.log({history})
     if (history.length >= 1) {
       setMode(history[history.length - 1]);
       setHistory([...history.slice(0, -1)]);

@@ -30,4 +30,26 @@ const getInterview = (state, interview) => {
   return studentAndInterviewer;
 };
 
-export { getAppointmentsForDay, getInterview };
+const getInterviewersForDay = (state, dayName) => {
+  let interviewersToday;
+  let filteredInterviewers = [];
+
+  state.days.forEach(day => {
+    if (day.name === dayName) {
+      interviewersToday = day.interviewers
+    }
+  });
+
+  for (const interviewer in state.interviewers) {
+    if (!interviewersToday) {
+      return [];
+    } else if(interviewersToday.includes(Number(interviewer))) {
+      filteredInterviewers.push(state.interviewers[interviewer])
+    }
+  }
+
+  return filteredInterviewers
+};
+
+
+export { getAppointmentsForDay, getInterview, getInterviewersForDay };
