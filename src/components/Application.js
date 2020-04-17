@@ -33,8 +33,24 @@ export default function Application(props) {
       ...state.appointments[id],
       interview: { ...interview }
     };
-    
-    console.log(id, interview);
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({
+      ...state,
+      appointments
+    });
+
+    console.log(id, interview)
+
+    return axios.put(`api/appointments/${id}`, {interview})
+      .then(res => {
+        setState({...state, appointments});
+      })
+      .catch(e => console.error('ERROR FROM application.js ===>', e))
   };
 
   const schedule = appointments.map((appointment) => {

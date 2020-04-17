@@ -51,5 +51,4 @@ const getInterviewersForDay = (state, dayName) => {
   return filteredInterviewers
 };
 
-
 export { getAppointmentsForDay, getInterview, getInterviewersForDay };
