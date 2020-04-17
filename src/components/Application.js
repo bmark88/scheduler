@@ -47,10 +47,7 @@ export default function Application(props) {
     console.log(id, interview)
 
     return axios.put(`api/appointments/${id}`, {interview})
-      .then(res => {
-        setState({...state, appointments});
-      })
-      .catch(e => console.error('ERROR FROM application.js ===>', e))
+      .then(res => setState({...state, appointments}));
   };
 
   function deleteInterview(id) {
@@ -70,10 +67,7 @@ export default function Application(props) {
     // });
 
     return axios.delete(`api/appointments/${id}`)
-      .then(res => {
-        setState({...state, appointments});
-      })
-      .catch(e => console.error('ERROR FROM application.js ===>', e))
+      .then(res => setState({...state, appointments}));
   };
 
   const schedule = appointments.map((appointment) => {
