@@ -35,7 +35,11 @@ function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={() => cancel(props)}>Cancel</Button>
-          <Button confirm onClick={() => props.onSave(name, interviewer)}>Save</Button>
+          <Button confirm onClick={() => {
+            if (interviewer && name) {props.onSave(name, interviewer)};}}
+          >
+            Save
+          </Button>
         </section>
       </section>
     </main>
