@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
 import Header from "./Header";
 import Show from "./Show";
@@ -22,23 +22,23 @@ function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+   
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
 
-    transition(SAVING);
-  
+    transition(SAVING, true);
+
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(e => transition(ERROR_SAVE, true));
+      .catch(() => transition(ERROR_SAVE, true));
   };
 
   function confirmDelete() {
-    transition(CONFIRM);
+    transition(CONFIRM, true);
   };
 
   function removeInterview() {
@@ -50,10 +50,19 @@ function Appointment(props) {
       .catch(e => transition(ERROR_DELETE, true));
   };
 
+  useEffect(() => {
+    if (props.interview && mode === EMPTY) {
+      transition(SHOW);
+    }
+    if (props.interview === null && mode === SHOW) {
+      transition(EMPTY);
+    }
+  }, [props.interview, transition, mode]);
+
   return (
     <article className="appointment">
       <Header time={props.time} />
-      {mode === SHOW && (
+      {mode === SHOW && props.interview && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer.name}

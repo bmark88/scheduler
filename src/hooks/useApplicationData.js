@@ -21,7 +21,6 @@ export default function useApplicationData() {
         return {...state, days: action.days, appointments: action.appointments, interviewers: action.interviewers};
       case SET_INTERVIEW: {
         const { newDays, appointments } = action;
-
         return {...state, appointments, newDays};
       }
       default:
@@ -30,15 +29,30 @@ export default function useApplicationData() {
         );
     }
   };
-  
-  useEffect(() => {
-    Promise.all([
+
+  function updateData() {
+   return Promise.all([
       Promise.resolve(axios.get('api/days')),
       Promise.resolve(axios.get('api/appointments')),
       Promise.resolve(axios.get('api/interviewers'))
     ]).then((all) => {
       dispatch({ type: SET_APPLICATION_DATA, days: all[0].data, appointments: all[1].data, interviewers: all[2].data });
     });
+  }
+
+  useEffect(() => {
+    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+
+    webSocket.onmessage = function (event) {
+      const data = JSON.parse(event.data);
+      
+      if (data.type === SET_INTERVIEW) {
+        return updateData()
+      }
+    };
+
+      updateData()
+      return () => webSocket.close();
   }, []);
   
   const setDay = day => {dispatch({ type: SET_DAY, day})};
