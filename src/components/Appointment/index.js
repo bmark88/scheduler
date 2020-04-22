@@ -60,7 +60,7 @@ function Appointment(props) {
   }, [props.interview, transition, mode]);
 
   return (
-    <article className="appointment">
+    <article data-testid="appointment" className="appointment">
       <Header time={props.time} />
       {mode === SHOW && props.interview && (
         <Show

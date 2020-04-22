@@ -27,7 +27,7 @@ const fixtures = {
       time: "2pm",
       interview: { student: "Leopold Silvers", interviewer: 4 }
     },
-    "4": { id: 4, time: "3pm", interview: null }
+    "4": { id: 4, time: "3pm", interview: { student: "Leopodsdsdsdld Silvers", interviewer: 1 } }
   },
   interviewers: {
     "1": {
@@ -54,7 +54,7 @@ const fixtures = {
 };
 
 export default {
-  // defaults: { baseURL: ""},
+  defaults: { baseURL: ""},
   get: jest.fn(url => {
     if (url === "/api/days") {
       return Promise.resolve({
@@ -79,5 +79,17 @@ export default {
         data: fixtures.interviewers
       });
     }
+  }),
+  put: jest.fn(url => {
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content"
+    })
+  }),
+  delete: jest.fn(url => {
+    return Promise.resolve({
+      status: 204,
+      statusText: "No Content"
+    })
   })
 };
