@@ -8,7 +8,6 @@ function Form(props) {
   const [error, setError] = useState("");
 
   function reset() {
-    // document.getElementsByTagName('input')[0].value = "";
     setName("");
     setInterviewer(null);
   };

@@ -1,18 +1,11 @@
 import React from "react";
-import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, prettyDOM, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
 import Application from "components/Application";
 import axios from "axios";
 
 afterEach(cleanup);
 
 describe("Application", () => {
-
-  // xit("defaults to Monday and changes the schedule when a new day is selected", 
-  // async () => {
-  //   const { getByText } = render(<Application />);
-
-  //   await waitForElement(() => getByText("Monday"));
-  // });
 
   it("changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
