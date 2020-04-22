@@ -32,7 +32,7 @@ deploy:
     - run:
         name: Push Master to Production
         command: |
-          git push git@github.com:bmark88/scheduler.git master:production
+          git push push https://github.com/bmark88/scheduler.git master:production master:production
 workflows:
   version: 2
   test_and_deploy:
