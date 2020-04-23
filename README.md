@@ -47,3 +47,10 @@ npm run storybook
 ```sh
 npm run test:server
 ```
+
+
+## Final Product
+
+!["Screenshot of an Empty Interview Schedule on Load"](https://github.com/bmark88/scheduler/blob/master/docs/load_empty_schedule.png)
+!["Screenshot of Adding an Interview"](https://github.com/bmark88/scheduler/blob/master/docs/add_appointment_form.png)
+!["Screenshot of Confirmation to Delete an Interview"](https://github.com/bmark88/scheduler/blob/master/docs/delete_appointment_confirmation.png)
