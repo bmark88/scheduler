@@ -51,10 +51,22 @@ npm run test:server
 
 ## Final Product
 
-Access the live app on Netlify here... https://bootcamp-scheduler.netlify.app/
-Access the JSON for the api/days here... https://bootcamp-scheduler.herokuapp.com/api/days
-Access the JSON for the api/appointments here... https://bootcamp-scheduler.herokuapp.com/api/appointments
-Access the JSON for the api/interviewers here... https://bootcamp-scheduler.herokuapp.com/api/interviewers
+- Access the live app on Netlify here... 
+```sh
+https://bootcamp-scheduler.netlify.app/
+```
+- Access the JSON for the api/days here... 
+```sh
+https://bootcamp-scheduler.herokuapp.com/api/days
+```
+- Access the JSON for the api/appointments here... 
+```sh
+https://bootcamp-scheduler.herokuapp.com/api/appointments
+```
+- Access the JSON for the api/interviewers here... 
+```sh
+https://bootcamp-scheduler.herokuapp.com/api/interviewers
+```
 
 !["Screenshot of an Empty Interview Schedule on Load"](https://github.com/bmark88/scheduler/blob/master/docs/load_empty_schedule.png)
 !["Screenshot of Adding an Interview"](https://github.com/bmark88/scheduler/blob/master/docs/add_appointment_form.png)
