@@ -95,6 +95,7 @@ test("getInterview returns null if no interview is booked", () => {
 
 //visual tests
 const FIRST = "FIRST";
+const EMPTY = "EMPTY"
 
 test("useVisualMode should initialize with default value", () => {
   const { result } = renderHook(() => useVisualMode(FIRST));
@@ -129,11 +130,11 @@ test("useVisualMode should return to previous mode", () => {
   expect(result.current.mode).toBe(FIRST);
 });
 
-test("useVisualMode should not return to previous mode if already at initial", () => {
-  const { result } = renderHook(() => useVisualMode(FIRST));
+test("useVisualMode should return to previous mode if initial mode is EMPTY", () => {
+  const { result } = renderHook(() => useVisualMode(EMPTY));
 
   act(() => result.current.back());
-  expect(result.current.mode).toBe(FIRST);
+  expect(result.current.mode).toBe(EMPTY);
 });
 
 test("useVisualMode should replace the current mode", () => {
